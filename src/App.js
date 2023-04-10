@@ -14,11 +14,11 @@ export default function BasicFilterDemo() {
   const [customers, setCustomers] = useState(null);
   const [filters, setFilters] = useState({
     global: { value: null, matchMode: FilterMatchMode.CONTAINS },
-    name: { value: null, matchMode: FilterMatchMode.STARTS_WITH },
-    'country.name': { value: null, matchMode: FilterMatchMode.STARTS_WITH },
-    representative: { value: null, matchMode: FilterMatchMode.IN },
+    // name: { value: null, matchMode: FilterMatchMode.STARTS_WITH },
+    // 'country.name': { value: null, matchMode: FilterMatchMode.STARTS_WITH },
+    // representative: { value: null, matchMode: FilterMatchMode.IN },
     status: { value: null, matchMode: FilterMatchMode.EQUALS },
-    verified: { value: null, matchMode: FilterMatchMode.EQUALS },
+    // verified: { value: null, matchMode: FilterMatchMode.EQUALS },
   });
   const [loading, setLoading] = useState(true);
   const [globalFilterValue, setGlobalFilterValue] = useState('');
@@ -134,34 +134,34 @@ export default function BasicFilterDemo() {
     );
   };
 
-  //   const countryBodyTemplate = (rowData) => {
-  //     return (
-  //       <div className="flex align-items-center gap-2">
-  //         <img
-  //           alt="flag"
-  //           src="https://primefaces.org/cdn/primereact/images/flag/flag_placeholder.png"
-  //           className={`flag flag-${rowData.country.code}`}
-  //           style={{ width: '24px' }}
-  //         />
-  //         <span>{rowData.country.name}</span>
-  //       </div>
-  //     );
-  //   };
+  const countryBodyTemplate = (rowData) => {
+    return (
+      <div className="flex align-items-center gap-2">
+        <img
+          alt="flag"
+          src="https://primefaces.org/cdn/primereact/images/flag/flag_placeholder.png"
+          className={`flag flag-${rowData.country.code}`}
+          style={{ width: '24px' }}
+        />
+        <span>{rowData.country.name}</span>
+      </div>
+    );
+  };
 
-  //   const representativeBodyTemplate = (rowData) => {
-  //     const representative = rowData.representative;
+  const representativeBodyTemplate = (rowData) => {
+    const representative = rowData.representative;
 
-  //     return (
-  //       <div className="flex align-items-center gap-2">
-  //         <img
-  //           alt={representative.name}
-  //           src={`https://primefaces.org/cdn/primereact/images/avatar/${representative.image}`}
-  //           width="32"
-  //         />
-  //         <span>{representative.name}</span>
-  //       </div>
-  //     );
-  //   };
+    return (
+      <div className="flex align-items-center gap-2">
+        <img
+          alt={representative.name}
+          src={`https://primefaces.org/cdn/primereact/images/avatar/${representative.image}`}
+          width="32"
+        />
+        <span>{representative.name}</span>
+      </div>
+    );
+  };
 
   //   const representativesItemTemplate = (option) => {
   //     return (
@@ -269,7 +269,7 @@ export default function BasicFilterDemo() {
           header="Country"
           filterField="country.name"
           //   style={{ minWidth: '12rem' }}
-          //   body={countryBodyTemplate}
+          body={countryBodyTemplate}
           //   filter
           //   filterPlaceholder="Search by country"
         />
@@ -279,7 +279,7 @@ export default function BasicFilterDemo() {
           //   showFilterMenu={false}
           //   filterMenuStyle={{ width: '14rem' }}
           //   style={{ minWidth: '14rem' }}
-          //   body={representativeBodyTemplate}
+          body={representativeBodyTemplate}
           //   filter
           //   filterElement={representativeRowFilterTemplate}
         />
